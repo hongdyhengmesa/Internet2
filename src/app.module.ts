@@ -7,6 +7,7 @@ import { Receipts } from './receipts/receipts.entity';
 import { ConfigModule } from '@nestjs/config';
 import { NotificationsModule } from './notifications/notifications.module';
 import { OrdersModule } from './orders/orders.module';
+import { CoreModule } from './core/core.module';
 
 @Module({
   imports: [
@@ -25,7 +26,8 @@ import { OrdersModule } from './orders/orders.module';
     }),
     ReceiptsModule,
     NotificationsModule,
-    OrdersModule
+    OrdersModule,
+    CoreModule
   ],
   controllers: [AppController],
   providers: [AppService],
