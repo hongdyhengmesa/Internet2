@@ -1,16 +1,17 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { CategoryService } from '../../module/category/category.service';
+import { CategoryType } from '../types/category.type';
 
-@Resolver('Category')
-export class CategoryResolver {
+@Resolver(() => CategoryType)
+export class CategoryCodeFirstResolver {
   constructor(private readonly categoryService: CategoryService) {}
 
-  @Query('categories')
+  @Query(() => [CategoryType])
   categories() {
     return this.categoryService.findAll();
   }
 
-  @Mutation('createCategory')
+  @Mutation(() => CategoryType)
   createCategory(@Args('name') name: string) {
     return this.categoryService.create({ name });
   }

@@ -1,14 +1,13 @@
 import {
-  Resolver,
-  Query,
-  Mutation,
   Args,
-  ResolveField,
+  Mutation,
   Parent,
+  Query,
+  ResolveField,
+  Resolver,
 } from '@nestjs/graphql';
-
-import { ProductService } from '../../product/product.service';
-import { CategoryService } from '../../category/category.service';
+import { CategoryService } from '../../module/category/category.service';
+import { ProductService } from '../../module/product/product.service';
 
 @Resolver('Product')
 export class ProductResolver {
@@ -20,6 +19,11 @@ export class ProductResolver {
   @Query('products')
   products() {
     return this.productService.findAll();
+  }
+
+  @Query('productsByCategory')
+  productsByCategory(@Args('categoryId') categoryId: string) {
+    return this.productService.findByCategory(Number(categoryId));
   }
 
   @Query('product')
@@ -41,7 +45,7 @@ export class ProductResolver {
   }
 
   @ResolveField('category')
-  category(@Parent() product: any) {
-    return this.categoryService.findOne(product.categoryId);
+  category(@Parent() product: { categoryId: number }) {
+    return this.categoryService.findOne(Number(product.categoryId));
   }
 }
