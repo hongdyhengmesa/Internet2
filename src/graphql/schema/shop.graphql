@@ -14,14 +14,11 @@ type Product {
 type Query {
   categories: [Category!]!
   products: [Product!]!
+  productsByCategory(categoryId: ID!): [Product!]!
   product(id: ID!): Product
 }
 
 type Mutation {
   createCategory(name: String!): Category!
-  createProduct(
-    name: String!
-    price: Float!
-    categoryId: ID!
-  ): Product!
+  createProduct(name: String!, price: Float!, categoryId: ID!): Product!
 }

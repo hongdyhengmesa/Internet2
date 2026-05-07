@@ -12,11 +12,11 @@ import { Product } from './module/product/product.entity';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.DB_HOST ?? 'localhost',
-      port: Number(process.env.DB_PORT ?? 5432),
-      username: process.env.DB_USERNAME ?? process.env.USER ?? 'postgres',
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE ?? 'ecommerce',
+      host: 'localhost',
+      port: 5431,
+      username: 'postgres',
+      password: 'mysecretpassword',
+      database: 'ecommerce',
       entities: [Category, Product],
       synchronize: true,
     }),
