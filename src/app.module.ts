@@ -23,7 +23,7 @@ import { Order } from './orders/entities/order.entity';
       password: 'mysecretpassword',
       database: 'receipts_db',
       synchronize: true,
-      entities: [Receipts], // register entity
+      entities: [Receipts, Order], // register entity
     }),
     ReceiptsModule,
     NotificationsModule,
